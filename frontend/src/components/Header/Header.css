@@ -40,3 +40,28 @@
     font-size: max(1vw 13px);
     border-radius: 50px;
 }
+@media(max-width: 1050px) {
+   
+    .header-contents{
+        max-width: 45%;
+    }
+    
+}
+@media(max-width: 750px) {
+    .header{
+        height: 60vw;
+        width: 100%;
+        background-size: cover;
+    }
+    .header-contents{
+        max-width: 60%;
+    }
+    .header-contents p{
+        display: none  ;
+    }
+    .header-contents button{
+        font-size: 12px;
+        padding: 2vw 3vw;
+    }
+    
+}

@@ -5,6 +5,7 @@
   margin: 0;
   box-sizing: border-box;
   font-family: Raleway;
+  scroll-behavior: smooth ;
 
 }
 
@@ -18,8 +19,10 @@ a{
 .app{
   width: 90%;
   margin: auto;
+  overflow-x: hidden;
 
 }
+
 
 @keyframes fadeIn {
   0% {
