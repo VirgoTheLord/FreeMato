@@ -1,38 +1,74 @@
-.place-order{
-    display: flex;
-    align-items: start;
-    justify-content: space-between;
-    gap: 50px;
-    margin-top: 100px;
+.place-order {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 50px;
+  margin-top: 100px;
 }
 
-.place-order-left{
-    width: 100%;
-    max-width: max(30%,500px);
+.place-order-left {
+  width: 100%;
+  max-width: max(30%, 500px);
+}
 
+.place-order-left p {
+  font-size: 30px;
+  font-weight: 600;
+  margin-bottom: 50px;
+}
 
+.place-order-left input {
+  margin-bottom: 15px;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #c5c5c5;
+  border-radius: 4px;
+  outline-color: teal;
 }
-.place-order-left p{
-    font-size: 30px;
-    font-weight: 600;
-    margin-bottom: 50px;
+
+.place-order-left .multi-fields {
+  display: flex;
+  gap: 10px;
 }
-.place-order-left input{
-    margin-bottom: 15px;
+
+.place-order-right {
+  width: 100%;
+  max-width: max(40%, 500px);
+}
+
+.place-order .cart-total button {
+  margin-top: 30px;
+}
+
+/* Media Query for Mobile View (up to 650px) */
+@media (max-width: 650px) {
+  .place-order {
+    flex-direction: column; /* Stack left above right */
+    align-items: center; /* Center align items */
+    gap: 20px; /* Reduce gap for mobile */
+    margin-top: 70px;
+  }
+
+  .place-order-left,
+  .place-order-right {
+    max-width: 100%; /* Full width for both sections */
     width: 100%;
-    padding: 10px;
-    border: 1px solid #c5c5c5;
-    border-radius: 4px;
-    outline-color: teal;
-}
-.place-order-left .multi-fields{
-    display: flex;
-    gap: 10px;
-}
-.place-order-right{
-    width: 100%;
-    max-width: max(40%,500px);
-}
-.place-order .cart-total button{
-    margin-top: 30px;
+  }
+
+  .place-order-left p {
+    font-size: 24px; /* Slightly smaller font size for mobile */
+    margin-bottom: 30px; /* Reduce margin for mobile */
+  }
+
+  /* Keep .multi-fields layout same as desktop */
+  .place-order-left .multi-fields {
+    display: flex; /* Maintain horizontal layout */
+    gap: 10px; /* Same gap as desktop */
+    flex-wrap: wrap; /* Allow wrapping if needed for smaller screens */
+  }
+
+  .place-order-left .multi-fields input {
+    width: calc(50% - 5px); /* Maintain two inputs side by side, accounting for gap */
+    box-sizing: border-box; /* Ensure padding/border included in width */
+  }
 }
