@@ -15,15 +15,16 @@
   font-size: 30px;
   font-weight: 600;
   margin-bottom: 50px;
+  color: white;
 }
 
 .place-order-left input {
   margin-bottom: 15px;
   width: 100%;
   padding: 10px;
-  border: 1px solid #c5c5c5;
+  border: 1px solid #ff0000;
   border-radius: 4px;
-  outline-color: teal;
+  outline-color: rgb(190, 0, 0);
 }
 
 .place-order-left .multi-fields {

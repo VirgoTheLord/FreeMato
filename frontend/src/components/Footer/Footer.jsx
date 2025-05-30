@@ -1,23 +1,42 @@
 import React from "react";
 import "./Footer.css";
 import { assets } from "../../assets/frontend_assets/assets";
+import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa"; // Import react-icons for GitHub, LinkedIn, and Instagram
 
 const Footer = () => {
   return (
     <div className="footer" id="footer">
       <div className="footer-content">
         <div className="footer-content-left">
-          <img src={assets.logo} alt="" />
+          <img src={assets.logo} alt="Logo" />
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eligendi,
-            illo molestias ex esse quaerat delectus optio consequatur harum
-            voluptatem mollitia ipsa sit. Deserunt dolor dolorum maiores
-            excepturi iure alias obcaecati!
+            AlwXn is your premier online restaurant, offering top-of-the-line
+            dining experiences with fast and reliable delivery. Enjoy a curated
+            menu of gourmet dishes, crafted with the finest ingredients,
+            delivered straight to your door.
           </p>
           <div className="footer-social-icons">
-            <img src={assets.facebook_icon} alt="" />
-            <img src={assets.twitter_icon} alt="" />
-            <img src={assets.linkedin_icon} alt="" />
+            <a
+              href="https://github.com/VirgoTheLord"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaGithub className="social-icon" size={25} />
+            </a>
+            <a
+              href="https://www.linkedin.com/in/alwin-aby-mathew/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaLinkedin className="social-icon" size={25} />
+            </a>
+            <a
+              href="https://instagram.com/alwx.n"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaInstagram className="social-icon" size={25} />
+            </a>
           </div>
         </div>
         <div className="footer-content-center">
@@ -30,7 +49,7 @@ const Footer = () => {
           </ul>
         </div>
         <div className="footer-content-right">
-          <h2>Get in Touch.</h2>
+          <h2>Get in Touch</h2>
           <ul>
             <li>+91 9947581345</li>
             <li>alwinabyofficial@gmail.com</li>

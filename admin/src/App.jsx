@@ -8,7 +8,8 @@ import Orders from "./pages/Orders/Orders";
 import { ToastContainer } from "react-toastify";
 
 const App = () => {
-  const url = "http://localhost:4000";
+  const url = import.meta.env.VITE_BACKEND_URL;
+
   return (
     <div>
       <ToastContainer />
@@ -19,7 +20,7 @@ const App = () => {
         <Routes>
           <Route path="/add" element={<Add url={url} />} />
           <Route path="/list" element={<List url={url} />} />
-          <Route path="/orders" element={<Orders />} />
+          <Route path="/orders" element={<Orders url={url} />} />
         </Routes>
       </div>
     </div>

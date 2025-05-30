@@ -1,28 +1,69 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  font-family: Raleway;
-  scroll-behavior: smooth ;
-
+  font-family: Raleway, sans-serif;
+  scroll-behavior: smooth;
 }
 
-body{
+body {
   min-height: 100vh;
+  overflow-x: hidden; /* Prevent horizontal scrolling globally */
 }
-a{
+
+a {
   text-decoration: none;
   color: inherit;
 }
-.app{
-  width: 90%;
-  margin: auto;
-  overflow-x: hidden;
 
+.app {
+  width: 90%;
+  margin: auto ;
+  position: relative;
+  z-index: 0;
+  overflow-x: hidden; /* Ensure no horizontal overflow in app container */
 }
 
+.background-video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw; /* Full viewport width */
+  height: 100vh; /* Full viewport height */
+  object-fit: cover; /* Cover viewport, clip excess */
+  object-position: center; /* Center the video */
+  z-index: -1; /* Keep video in background */
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+  .background-video {
+    position: fixed; /* Ensure it stays fixed on scroll */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center;
+    z-index: -1;
+  }
+
+  body, html {
+    overflow-x: hidden; /* Reinforce no horizontal scroll */
+    width: 100vw; /* Force body to viewport width */
+  }
+
+  .app {
+    width: 90%; /* Full width on mobile for consistency */
+    overflow-x: hidden; /* Prevent any overflow */
+  }
+}
+
+.app, .app * {
+  position: relative;
+}
 
 @keyframes fadeIn {
   0% {
@@ -31,5 +72,4 @@ a{
   100% {
     opacity: 1;
   }
-  
 }
