@@ -17,6 +17,19 @@ const App = () => {
   const [showLogin, setShowLogin] = useState(false);
   const [entered, setEntered] = useState(false);
 
+  // Load entered state from localStorage
+  useEffect(() => {
+    const storedEntered = localStorage.getItem("entered");
+    if (storedEntered === "true") {
+      setEntered(true);
+    }
+  }, []);
+
+  const handleContinue = () => {
+    localStorage.setItem("entered", "true");
+    setEntered(true);
+  };
+
   // Debug StoreContext values
   useEffect(() => {
     console.log("[App] Context State:", { loading, progress, error });
@@ -29,8 +42,6 @@ const App = () => {
       let currentProgress = 0;
       const interval = setInterval(() => {
         currentProgress += 10;
-        // Note: This assumes StoreContext allows external progress updates.
-        // Replace with actual StoreContext progress update logic if needed.
         if (currentProgress >= 100) {
           clearInterval(interval);
         }
@@ -39,12 +50,12 @@ const App = () => {
     }
   }, [loading, progress]);
 
-  if (loading || !entered) {
+  if ((loading && localStorage.getItem("entered") !== "true") || !entered) {
     return (
       <Loader
         progress={progress}
         loading={loading}
-        onContinue={() => setEntered(true)}
+        onContinue={handleContinue}
       />
     );
   }
