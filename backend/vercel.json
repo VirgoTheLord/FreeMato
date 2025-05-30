@@ -11,7 +11,10 @@
             "use":"@vercel/static"
         }
     ],
-    "routes":[
-        {"src":"/(.*)","dest":"/"}
+    "routes": [
+
+    { "src": "/api/(.*)", "dest": "/server.js" },
+
+    { "src": "/(.*)", "dest": "/src/$1" }
     ]
 }
