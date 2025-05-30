@@ -10,7 +10,7 @@ const Footer = () => {
         <div className="footer-content-left">
           <img src={assets.logo} alt="Logo" />
           <p>
-            AlwXn is your premier online restaurant, offering top-of-the-line
+            FreeMato is your premier online restaurant, offering top-of-the-line
             dining experiences with fast and reliable delivery. Enjoy a curated
             menu of gourmet dishes, crafted with the finest ingredients,
             delivered straight to your door.
