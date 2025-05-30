@@ -5,8 +5,10 @@ export const StoreContext = createContext(null);
 
 const StoreContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
+  const [loading, setLoading] = useState(true); // Track loading state
+  const [progress, setProgress] = useState(0); // Track fetch progress
+  const [error, setError] = useState(null); // Track errors
   const url = import.meta.env.VITE_BACKEND_URL;
-
   const [token, setToken] = useState("");
   const [food_list, setFoodList] = useState([]);
 
@@ -34,7 +36,7 @@ const StoreContextProvider = (props) => {
       if (updatedCart[itemId] > 1) {
         updatedCart[itemId] -= 1;
       } else {
-        delete updatedCart[itemId]; // Remove item if quantity reaches 0
+        delete updatedCart[itemId];
       }
       return updatedCart;
     });
@@ -68,8 +70,11 @@ const StoreContextProvider = (props) => {
     try {
       const response = await axios.get(`${url}/api/food/list`);
       setFoodList(response.data.data);
+      setProgress(50); // 50% progress after food list fetch
     } catch (error) {
       console.error("Error fetching food list:", error);
+      setError("Failed to load food list.");
+      throw error;
     }
   };
 
@@ -81,7 +86,6 @@ const StoreContextProvider = (props) => {
         { headers: { token } }
       );
       const cartData = response.data.cartData || {};
-      // Filter out items with zero or negative quantities
       const cleanedCart = {};
       for (const itemId in cartData) {
         if (cartData[itemId] > 0) {
@@ -89,17 +93,32 @@ const StoreContextProvider = (props) => {
         }
       }
       setCartItems(cleanedCart);
+      setProgress(100); // 100% progress after cart fetch
     } catch (error) {
       console.error("Error loading cart data:", error);
+      setError("Failed to load cart data.");
+      throw error;
     }
   };
 
   useEffect(() => {
     async function loadData() {
-      await fetchFoodList();
-      if (localStorage.getItem("token")) {
-        setToken(localStorage.getItem("token"));
-        await loadCartData(localStorage.getItem("token"));
+      setLoading(true);
+      setProgress(0);
+      setError(null);
+      try {
+        await fetchFoodList();
+        if (localStorage.getItem("token")) {
+          setToken(localStorage.getItem("token"));
+          await loadCartData(localStorage.getItem("token"));
+        } else {
+          setProgress(100); // No cart fetch needed if no token
+        }
+        // Enforce minimum loader display time (1.5s)
+        await new Promise((resolve) => setTimeout(resolve, 1500));
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
       }
     }
     loadData();
@@ -116,6 +135,9 @@ const StoreContextProvider = (props) => {
     token,
     setToken,
     loadCartData,
+    loading,
+    progress,
+    error,
   };
 
   return (

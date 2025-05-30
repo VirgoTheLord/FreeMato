@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
+import { StoreContext } from "./context/StoreContext"; // Adjust path as needed
 import Navbar from "./components/Navbar/Navbar";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home/Home";
@@ -9,17 +10,52 @@ import LoginPopUp from "./components/LoginPopUp/LoginPopUp";
 import Verify from "./pages/Verify/Verify";
 import MyOrders from "./pages/MyOrders/MyOrders";
 import bgvideo from "./assets/frontend_assets/background1.mp4";
+import Loader from "./components/Loader/Loader";
 
 const App = () => {
+  const { loading, progress, error } = useContext(StoreContext);
   const [showLogin, setShowLogin] = useState(false);
-  //frontend\src\assets\frontend_assets\background.mp4
+  const [entered, setEntered] = useState(false);
+
+  // Debug StoreContext values
+  useEffect(() => {
+    console.log("[App] Context State:", { loading, progress, error });
+  }, [loading, progress, error]);
+
+  // Fallback: Simulate progress if invalid
+  useEffect(() => {
+    if (loading && (typeof progress !== "number" || isNaN(progress))) {
+      console.log("[App] Progress invalid, simulating incremental progress");
+      let currentProgress = 0;
+      const interval = setInterval(() => {
+        currentProgress += 10;
+        // Note: This assumes StoreContext allows external progress updates.
+        // Replace with actual StoreContext progress update logic if needed.
+        if (currentProgress >= 100) {
+          clearInterval(interval);
+        }
+      }, 500); // Simulate 5-second load
+      return () => clearInterval(interval);
+    }
+  }, [loading, progress]);
+
+  if (loading || !entered) {
+    return (
+      <Loader
+        progress={progress}
+        loading={loading}
+        onContinue={() => setEntered(true)}
+      />
+    );
+  }
+
   return (
     <>
-      {/* Background video element */}
       <video autoPlay muted loop playsInline className="background-video">
         <source src={bgvideo} type="video/mp4" />
         Your browser does not support the video tag.
       </video>
+      <div className="video-overlay"></div>
 
       {showLogin && <LoginPopUp setShowLogin={setShowLogin} />}
 
@@ -38,4 +74,5 @@ const App = () => {
     </>
   );
 };
+
 export default App;
