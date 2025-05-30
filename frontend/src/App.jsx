@@ -19,14 +19,14 @@ const App = () => {
 
   // Load entered state from localStorage
   useEffect(() => {
-    const storedEntered = localStorage.getItem("entered");
+    const storedEntered = sessionStorage.getItem("entered");
     if (storedEntered === "true") {
       setEntered(true);
     }
   }, []);
 
   const handleContinue = () => {
-    localStorage.setItem("entered", "true");
+    sessionStorage.setItem("entered", "true");
     setEntered(true);
   };
 
@@ -50,7 +50,7 @@ const App = () => {
     }
   }, [loading, progress]);
 
-  if ((loading && localStorage.getItem("entered") !== "true") || !entered) {
+  if ((loading && sessionStorage.getItem("entered") !== "true") || !entered) {
     return (
       <Loader
         progress={progress}
