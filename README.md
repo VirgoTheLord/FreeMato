@@ -6,8 +6,6 @@ FreeMato is a full-stack food ordering web application. It allows users to brows
 
 **Try it here:** [https://freemato.vercel.app/](https://freemato.vercel.app/)
 
-*(If this link does not work, please ensure you have deployed the project or update this section with your own deployment URL.)*
-
 ## Features
 
 - **User Features:**
