@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Limelight&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Patrick+Hand+SC&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
 
 .loader {
   width: 100%;
@@ -25,9 +27,9 @@
 }
 
 .continue-btn {
-  font-family: "Patrick Hand SC", cursive;
+  font-family: "Limelight", sans-serif;
   font-size: 80px;
-  font-weight: 1000;
+  font-weight: 500;
   color: #ffffff;
   cursor: pointer;
   text-transform: capitalize;
@@ -43,7 +45,14 @@
   display: inline-block;
   transition: transform 0.3s ease;
 }
+.my-font{
+   font-family: 'Montserrat', sans-serif ;
+   font-weight: 400;
 
+}
+.custom-font{
+  font-family: 'Patrick Hand SC', cursive;
+}
 .continue-btn:hover .arrow {
   transform: translateX(6px);
 }

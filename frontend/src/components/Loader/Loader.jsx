@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import "./Loader.css";
+import DecryptedText from "../Decrypt/DecryptedText";
 
 const Loader = ({ progress, onContinue, loading }) => {
   const numberRef = useRef(null);
@@ -82,7 +83,18 @@ const Loader = ({ progress, onContinue, loading }) => {
         onClick={handleContinue}
         style={{ opacity: 0, transform: "translateY(20px)" }}
       >
-        It’s time already, get in here <span className="arrow">→</span>
+        <DecryptedText
+          text="Get in Already."
+          speed={100}
+          parentClassName="my-font"
+          maxIterations={10}
+          sequential={false}
+          revealDirection="start"
+          className="my-font"
+          encryptedClassName="custom-font"
+          animateOn="hover"
+          forceHover={animatedProgress >= 100 && progress >= 100 && !loading}
+        />
       </button>
     </div>
   );
